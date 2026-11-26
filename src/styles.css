@@ -1,0 +1,624 @@
+.vc-vidcomp-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 8px;
+    color: var(--text-default, var(--text-normal));
+}
+
+.vc-vidcomp-preview {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    background: #000;
+}
+
+.vc-vidcomp-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vc-vidcomp-heading {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--header-secondary, var(--text-muted));
+}
+
+.vc-vidcomp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.vc-vidcomp-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.vc-vidcomp-label {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-input {
+    box-sizing: border-box;
+    min-width: 0;
+    flex: 1;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle, var(--background-modifier-accent));
+    background: var(--input-background, var(--background-tertiary));
+    color: var(--text-default, var(--text-normal));
+    font-size: 14px;
+    font-family: var(--font-code, monospace);
+}
+
+select.vc-vidcomp-input {
+    font-family: inherit;
+    flex: 0 1 auto;
+    min-width: 260px;
+}
+
+.vc-vidcomp-small {
+    flex: 0 0 90px;
+}
+
+.vc-vidcomp-input:focus {
+    outline: 2px solid var(--brand-500, #5865f2);
+    outline-offset: -1px;
+}
+
+.vc-vidcomp-input-bad {
+    border-color: var(--status-danger, #da373c);
+}
+
+.vc-vidcomp-muted,
+.vc-vidcomp-info {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-estimate {
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--background-secondary, rgb(0 0 0 / 15%));
+}
+
+.vc-vidcomp-estimate-bad,
+.vc-vidcomp-error {
+    color: var(--text-danger, var(--status-danger, #da373c));
+}
+
+.vc-vidcomp-error {
+    font-size: 14px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.vc-vidcomp-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vc-vidcomp-bar {
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--background-modifier-accent, rgb(128 128 128 / 25%));
+}
+
+.vc-vidcomp-bar-fill {
+    height: 100%;
+    background: var(--brand-500, #5865f2);
+    transition: width 0.3s ease;
+}
+
+.vc-vidcomp-preview {
+    cursor: pointer;
+}
+
+/* ---------- timeline ---------- */
+
+.vc-vidcomp-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    outline: none;
+}
+
+.vc-vidcomp-timeline:focus-visible .vc-vidcomp-track {
+    box-shadow: 0 0 0 2px var(--brand-500, #5865f2);
+}
+
+.vc-vidcomp-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.vc-vidcomp-track {
+    position: relative;
+    height: 54px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+}
+
+.vc-vidcomp-thumbs {
+    display: flex;
+    height: 100%;
+}
+
+.vc-vidcomp-thumbs > img,
+.vc-vidcomp-thumb-empty {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.vc-vidcomp-thumb-empty {
+    background: linear-gradient(90deg, rgb(255 255 255 / 4%), rgb(255 255 255 / 9%), rgb(255 255 255 / 4%));
+    border-right: 1px solid rgb(0 0 0 / 40%);
+}
+
+.vc-vidcomp-dim {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgb(0 0 0 / 65%);
+    pointer-events: none;
+}
+
+.vc-vidcomp-selection {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    border-top: 3px solid var(--brand-500, #5865f2);
+    border-bottom: 3px solid var(--brand-500, #5865f2);
+    cursor: grab;
+}
+
+.vc-vidcomp-selection:active {
+    cursor: grabbing;
+}
+
+.vc-vidcomp-handle {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    width: 12px;
+    background: var(--brand-500, #5865f2);
+    cursor: ew-resize;
+}
+
+.vc-vidcomp-handle::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 18px;
+    transform: translate(-50%, -50%);
+    border-radius: 1px;
+    background: rgb(255 255 255 / 85%);
+}
+
+.vc-vidcomp-handle-start {
+    left: 0;
+    border-radius: 6px 0 0 6px;
+}
+
+.vc-vidcomp-handle-end {
+    right: 0;
+    border-radius: 0 6px 6px 0;
+}
+
+.vc-vidcomp-playhead {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    margin-left: -1px;
+    background: #fff;
+    box-shadow: 0 0 3px rgb(0 0 0 / 80%);
+    pointer-events: none;
+}
+
+.vc-vidcomp-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.vc-vidcomp-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ---------- audio tracks ---------- */
+
+.vc-vidcomp-tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vc-vidcomp-track-row {
+    display: grid;
+    grid-template-columns: 1fr 180px 48px;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: var(--background-secondary, rgb(0 0 0 / 15%));
+}
+
+.vc-vidcomp-track-off {
+    opacity: 0.6;
+}
+
+.vc-vidcomp-volume {
+    width: 100%;
+    accent-color: var(--brand-500, #5865f2);
+}
+
+.vc-vidcomp-volume-label {
+    text-align: right;
+    font-family: var(--font-code, monospace);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-link {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text-link, #00a8fc);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.vc-vidcomp-link:hover:not(:disabled) {
+    text-decoration: underline;
+}
+
+.vc-vidcomp-link:disabled {
+    color: var(--text-muted);
+    cursor: default;
+}
+
+.vc-vidcomp-caption {
+    font-family: inherit;
+}
+
+/* ---------- in-chat job card ---------- */
+
+.vc-vidcomp-job {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 420px;
+    margin-top: 4px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle, var(--background-modifier-accent));
+    background: var(--background-secondary, rgb(0 0 0 / 15%));
+}
+
+.vc-vidcomp-job-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.vc-vidcomp-job-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* ---------- settings stats ---------- */
+
+.vc-vidcomp-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text-default, var(--text-normal));
+}
+
+.vc-vidcomp-stat-row {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* ---------- compact timeline controls ---------- */
+
+.vc-vidcomp-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.vc-vidcomp-spacer {
+    flex: 1;
+}
+
+.vc-vidcomp-btn-group {
+    display: flex;
+    gap: 2px;
+}
+
+.vc-vidcomp-btn {
+    height: 30px;
+    min-width: 32px;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--background-modifier-accent, rgb(128 128 128 / 20%));
+    color: var(--text-default, var(--text-normal));
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 30px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.vc-vidcomp-btn:hover {
+    background: var(--background-modifier-selected, rgb(128 128 128 / 32%));
+}
+
+.vc-vidcomp-btn-primary {
+    background: var(--brand-500, #5865f2);
+    color: #fff;
+}
+
+.vc-vidcomp-btn-primary:hover {
+    background: var(--brand-560, #4752c4);
+}
+
+.vc-vidcomp-play {
+    min-width: 76px;
+}
+
+.vc-vidcomp-clock,
+.vc-vidcomp-clip-len {
+    font-family: var(--font-code, monospace);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-clip-len {
+    color: var(--text-default, var(--text-normal));
+    font-weight: 600;
+}
+
+.vc-vidcomp-clip-len::before {
+    content: "= ";
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.vc-vidcomp-time-field {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle, var(--background-modifier-accent));
+    background: var(--input-background, var(--background-tertiary));
+    overflow: hidden;
+}
+
+.vc-vidcomp-time-field:focus-within {
+    border-color: var(--brand-500, #5865f2);
+}
+
+.vc-vidcomp-time-label {
+    padding: 0 6px 0 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-time-input {
+    width: 64px;
+    height: 100%;
+    padding: 0 4px;
+    border: 0;
+    background: none;
+    color: var(--text-default, var(--text-normal));
+    font-family: var(--font-code, monospace);
+    font-size: 13px;
+    outline: none;
+}
+
+.vc-vidcomp-time-field .vc-vidcomp-time-here {
+    height: 100%;
+    border-radius: 0;
+    font-size: 12px;
+    line-height: 28px;
+}
+
+.vc-vidcomp-time-field.vc-vidcomp-input-bad,
+.vc-vidcomp-time-input.vc-vidcomp-input-bad {
+    color: var(--text-danger, #da373c);
+}
+
+/* ---------- encode options ---------- */
+
+.vc-vidcomp-options {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 12px;
+}
+
+.vc-vidcomp-option {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.vc-vidcomp-options select.vc-vidcomp-input {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.vc-vidcomp-nowrap {
+    flex-wrap: nowrap;
+}
+
+/* ---------- simplified layout ---------- */
+
+.vc-vidcomp-body {
+    gap: 12px;
+}
+
+.vc-vidcomp-controls {
+    flex-wrap: nowrap;
+}
+
+.vc-vidcomp-play {
+    min-width: 40px;
+}
+
+.vc-vidcomp-clip-range {
+    font-family: var(--font-code, monospace);
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-clip-range b {
+    margin-left: 6px;
+    color: var(--text-default, var(--text-normal));
+}
+
+.vc-vidcomp-caption {
+    flex: none;
+    height: 40px;
+    font-family: inherit;
+}
+
+.vc-vidcomp-summary-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vc-vidcomp-summary {
+    flex: 1;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-summary b {
+    color: var(--text-default, var(--text-normal));
+}
+
+.vc-vidcomp-warn {
+    color: var(--text-warning, #f0b232);
+}
+
+.vc-vidcomp-options {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px 14px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--background-secondary, rgb(0 0 0 / 15%));
+}
+
+.vc-vidcomp-option {
+    display: contents;
+}
+
+.vc-vidcomp-option-label {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-option-wide {
+    grid-column: 1 / -1;
+}
+
+.vc-vidcomp-option-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.vc-vidcomp-option-body .vc-vidcomp-tracks {
+    align-self: stretch;
+}
+
+.vc-vidcomp-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.vc-vidcomp-chip,
+.vc-vidcomp-chip-input {
+    box-sizing: border-box;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 14px;
+    border: 1px solid var(--border-subtle, rgb(128 128 128 / 30%));
+    background: transparent;
+    color: var(--text-default, var(--text-normal));
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.vc-vidcomp-chip:hover {
+    background: var(--background-modifier-hover, rgb(128 128 128 / 15%));
+}
+
+.vc-vidcomp-chip-on,
+.vc-vidcomp-chip-on:hover {
+    border-color: var(--brand-500, #5865f2);
+    background: var(--brand-500, #5865f2);
+    color: #fff;
+}
+
+.vc-vidcomp-chip-input {
+    width: 96px;
+    cursor: text;
+    outline: none;
+}
+
+.vc-vidcomp-chip-input::placeholder {
+    color: var(--text-muted);
+}
+
+.vc-vidcomp-track-row {
+    background: var(--background-tertiary, rgb(0 0 0 / 20%));
+}
+
+.vc-vidcomp-job {
+    color: var(--text-default, var(--text-normal));
+}
+
+.vc-vidcomp-job-name {
+    color: var(--header-primary, var(--text-default, #f2f3f5));
+}
